@@ -1,25 +1,40 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import Counter from "./components/Counter";
+import Edit from "./components/Edit";
+import Paragraph from "./components/Paragraph";
+import Table from "./components/Table";
 
-function App() {
+let workers = [
+  {
+    name: "Saltanat",
+    age: 18,
+    lastName: "Kurmankulova",
+    days: 1,
+    salaryPerDay: 20,
+  },
+  { name: "Anton", age: 26, lastName: "He", days: 6, salaryPerDay: 10 },
+  { name: "Dastan", age: 23, lastName: "He", days: 19, salaryPerDay: 28 },
+];
+
+const App = () => {
+  let [counter, setCounter] = useState(0);
+
+  function increment() {
+    setCounter(counter + 1);
+  }
+
+  function decrement() {
+    setCounter(counter - 1);
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Counter counter={counter} increment={increment} decrement={decrement} />
+      <Paragraph />
+      <Table workers={workers} />
+      <Edit workers={workers} />
     </div>
   );
-}
+};
 
 export default App;
